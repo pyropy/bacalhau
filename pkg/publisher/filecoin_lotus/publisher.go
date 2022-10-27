@@ -14,7 +14,6 @@ import (
 	"github.com/filecoin-project/bacalhau/pkg/publisher"
 	"github.com/filecoin-project/bacalhau/pkg/publisher/filecoin_lotus/api"
 	"github.com/filecoin-project/bacalhau/pkg/publisher/filecoin_lotus/api/storagemarket"
-	"github.com/filecoin-project/bacalhau/pkg/storage/util"
 	"github.com/filecoin-project/bacalhau/pkg/system"
 	"github.com/filecoin-project/go-address"
 	big2 "github.com/filecoin-project/go-state-types/big"
@@ -148,12 +147,6 @@ func (l *Publisher) carResultsDir(ctx context.Context, resultsDir string) (strin
 
 	tempFile, err := os.CreateTemp(l.config.UploadDir, "results-*.car")
 	if err != nil {
-		return "", err
-	}
-
-	// Temporary files will have 0600 as their permissions, which could cause issues when sharing with a Lotus node
-	// running inside a container.
-	if err := tempFile.Chmod(util.OS_ALL_RW); err != nil { //nolint:govet
 		return "", err
 	}
 

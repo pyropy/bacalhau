@@ -72,10 +72,6 @@ func (l *LotusNode) start(ctx context.Context) error {
 		return err
 	}
 
-	// Container may be running as a different user, so need to be sure that they can read the contents
-	if err := os.Chmod(uploadDir, util.OS_ALL_RWX); err != nil { //nolint:govet
-		return err
-	}
 	l.UploadDir = uploadDir
 
 	pathDir, err := os.MkdirTemp("", "bacalhau-lotus-path-dir")
