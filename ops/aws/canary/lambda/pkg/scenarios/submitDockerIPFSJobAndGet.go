@@ -72,7 +72,7 @@ func SubmitDockerIPFSJobAndGet(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	err = compareOutput(body, "07024a158889ccabb23c090a79558800  /inputs/data.tar.gz")
+	err = compareOutput(body, "70769e0deb9b88cc5d3fe91221446ab7  /inputs/data.tar.gz")
 	if err != nil {
 		return fmt.Errorf("testing md5 of input: %s", err)
 	}
